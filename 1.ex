@@ -1,7 +1,7 @@
 defmodule AOC.Solver1 do
     require AOC.Helper
 
-    def solve(file) do
+    def solve1(file) do
       {:ok, calories} = File.read(file)
       tcals = calories
         |> String.split("\n\n", trim: true)
@@ -22,4 +22,5 @@ defmodule AOC.Solver1 do
 
       {top1, top3}
     end
+
   end
