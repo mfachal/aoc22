@@ -6,7 +6,7 @@ get_inputs:
 	done
 
 test:
-	elixir -r helper.ex -r 1.ex tester.exs
+	elixir -r helper.ex -r 1.ex -r 2.ex tester.exs
 
 run:
 	elixir -r helper.ex -r 2.ex 2.exs
