@@ -72,13 +72,12 @@
 
     def solve(filename, decoding, end_conditions) do
       {:ok, guide} = File.read(filename)
-      strat_points = guide
+      guide
         |> String.split("\n", trim: true)
         |> Enum.map(fn strat_step -> String.split(strat_step, " ", trim: true) end)
         |> Enum.map(fn [play1, play2] -> {decoding[play1], decoding[play2]} end)
         |> Enum.map(points(end_conditions))
         |> Enum.sum()
-      strat_points
     end
 
     def solve_by_assumed_rules(file) do
@@ -91,12 +90,11 @@
 
     defp points(conditions) do
       fn {play1, play2} ->
-        points = conditions.()
+        conditions.()
           |> Enum.map(fn {condt, check} -> {condt, check.(play1, play2)} end)
           |> Enum.filter(fn {_condt, check} -> check end)
           |> Enum.map(fn {condt, _true} -> @points_per_output[condt] end)
           |> Enum.sum()
-        points
       end
     end
   end
